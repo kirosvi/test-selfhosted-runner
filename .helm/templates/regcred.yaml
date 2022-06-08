@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/dockerconfigjson
+metadata:
+  annotations:
+    "helm.sh/hook": "pre-install"
+    "helm.sh/hook-weight": "1"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
+  name: regcred
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJodHRwczovL2dpdGxhYi5waW1wYXkucnU6NDU2Ny92Mi8iOnsidXNlcm5hbWUiOiJnaXRsYWItZGVwbG95LXRva2VuIiwicGFzc3dvcmQiOiJPc2FocGVpeWVhcjNlZXRoIiwiZW1haWwiOiJnaXRsYWItZGVwbG95LXRva2VuQHBpbXBheS5ydSIsImF1dGgiOiJaMmwwYkdGaUxXUmxjR3h2ZVMxMGIydGxianBQYzJGb2NHVnBlV1ZoY2pObFpYUm8ifX19

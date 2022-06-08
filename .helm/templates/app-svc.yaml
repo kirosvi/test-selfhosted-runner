@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.app.name }}
+  labels: &Labels
+    app: {{ template "project.name" . }}
+    role: {{ .Values.app.role }}
+spec:
+  ports:
+  - port: {{ .Values.app.port }}
+    protocol: TCP
+    targetPort: {{ .Values.app.port }}
+  selector: *Labels

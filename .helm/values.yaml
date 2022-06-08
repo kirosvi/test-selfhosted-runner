@@ -1,0 +1,35 @@
+
+env:
+  TIER:
+    _default: stage
+    master: prod
+  ENABLE_DEBUG:
+    _default: 1
+    master: 0
+  ENABLE_KIBANA_LOGS:
+    _default: 0
+    master: 0
+
+app:
+  name: app
+  role: app
+  service_name: app
+  port: 80
+  endpoint: app
+  domain_stage: ppdev.ru
+  domain: pimpay.ru
+
+
+
+resources:
+  app:
+    requests:
+      cpu:
+        _default: "10m"
+      memory:
+        _default: "30Mi"
+    limits:
+      cpu:
+        _default: "1"
+      memory:
+        _default: "2Gi"

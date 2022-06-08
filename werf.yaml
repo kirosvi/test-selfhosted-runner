@@ -1,0 +1,20 @@
+project: test-image
+configVersion: 1
+
+---
+image: app
+from: alpine:3.13
+docker:
+  ENTRYPOINT: /entry.sh
+ansible:
+  install:
+    - name: Install bash
+      package:
+        name:
+          - nginx
+        state: present
+        update_cache: yes
+git:
+  - add: /entry.sh
+    to: /entry.sh
+

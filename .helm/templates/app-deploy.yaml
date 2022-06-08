@@ -1,0 +1,41 @@
+{{- $app_env := include "app_env" . -}}
+
+{{- $resources := set .Values.resources.app "global" $.Values.global }}
+{{- $app_resources := include "pod_resources" $resources -}}
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.app.name }}
+  labels: &Labels
+    app: {{ template "project.name" . }}
+    role: {{ .Values.app.role }}
+  annotations:
+    werf.io/log-regex: '(^(common))'
+spec:
+  replicas: 1
+  selector:
+    matchLabels: *Labels
+  template:
+    metadata:
+      labels: *Labels
+    spec:
+      restartPolicy: "Always"
+      containers:
+        - name: app
+          image: {{ .Values.werf.image.app }}
+          imagePullPolicy: Always
+          env:
+{{ $app_env | indent 10 }}
+{{ $app_resources | indent 10 }}
+#          readinessProbe:
+#            httpGet:
+#              port: 80
+#            successThreshold: 1
+#            failureThreshold: 3
+#            timeoutSeconds: 2
+#            initialDelaySeconds: 5
+#            periodSeconds: 5
+      imagePullSecrets:
+        - name: regcred
