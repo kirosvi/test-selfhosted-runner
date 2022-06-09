@@ -4,8 +4,6 @@ DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
 export DOCKER_CONFIG=$TMP_DOCKER_CONFIG
 export WERF_REPO=kiros/test-self-hosted
 
-docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_TOKEN $WERF_REPO
-
 export WERF_ENV=ENV
 export WERF_LOG_COLOR_MODE=on
 export WERF_LOG_PROJECT_DIR=1
