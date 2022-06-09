@@ -6,7 +6,7 @@ jobs:
 
   converge:
     name: Converge
-    runs-on: ubuntu-latest
+    runs-on: registry.werf.io/werf/werf
     steps:
 
       - name: Checkout code
@@ -24,11 +24,12 @@ jobs:
         run: |
           bash werf-ci-env.sh
           env
+          werf converge --repo $WERF_REPO
 
-      - name: Converge
-        uses: werf/actions/converge@v1.2
-        with:
-          env: production
-        env:
-          WERF_SET_ENV_URL: "envUrl=https://www.company.org"
-          WERF_REPO: "kiros/test-self-hosted"
+          #      - name: Converge
+          #        uses: werf/actions/converge@v1.2
+          #        with:
+          #          env: production
+          #        env:
+          #          WERF_SET_ENV_URL: "envUrl=https://www.company.org"
+          #          WERF_REPO: "kiros/test-self-hosted"
