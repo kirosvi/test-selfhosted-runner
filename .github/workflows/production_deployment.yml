@@ -31,3 +31,4 @@ jobs:
           env: production
         env:
           WERF_SET_ENV_URL: "envUrl=https://www.company.org"
+          WERF_REPO: "kiros/test-self-hosted"
