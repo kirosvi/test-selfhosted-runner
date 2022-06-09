@@ -16,7 +16,8 @@ jobs:
 
       - name: Configure env
         run: |
-          sh werf-ci-env.sh
+          bash werf-ci-env.sh
+          env
 
       - name: Converge
         uses: werf/actions/converge@v1.2
