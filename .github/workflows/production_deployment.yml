@@ -25,6 +25,9 @@ jobs:
 
 
       - name: Configure env
+        env:
+          WERF_SET_ENV_URL: "envUrl=https://www.company.org"
+          WERF_REPO: "kiros/test-self-hosted"
         run: |
           env
           source $(werf ci-env github --as-file)
