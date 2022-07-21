@@ -24,6 +24,7 @@ jobs:
         run: |
           bash werf-ci-env.sh
           env
+          source $(werf ci-env github --as-file)
           werf converge --repo $WERF_REPO
 
           #      - name: Converge
