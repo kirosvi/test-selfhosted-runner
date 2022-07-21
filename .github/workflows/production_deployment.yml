@@ -6,7 +6,7 @@ jobs:
 
   converge:
     name: Converge
-    runs-on: registry.werf.io/werf/werf
+    runs-on: self-hosted
     steps:
 
       - name: Checkout code
@@ -27,10 +27,15 @@ jobs:
           source $(werf ci-env github --as-file)
           werf converge --repo $WERF_REPO
 
-          #      - name: Converge
-          #        uses: werf/actions/converge@v1.2
-          #        with:
-          #          env: production
-          #        env:
-          #          WERF_SET_ENV_URL: "envUrl=https://www.company.org"
-          #          WERF_REPO: "kiros/test-self-hosted"
+      - name: Converge
+        uses: werf/actions/converge@v1.2
+        with:
+          env: production
+        env:
+          WERF_SET_ENV_URL: "envUrl=https://www.company.org"
+          WERF_REPO: "kiros/test-self-hosted"
+        run: |
+          env
+          source $(werf ci-env github --as-file)
+          env
+          werf converge --repo $WERF_REPO
