@@ -20,22 +20,21 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
+      - name: Install werf CLI
+        uses: werf/actions/install@v1.2
+
+
       - name: Configure env
         run: |
-          bash werf-ci-env.sh
           env
           source $(werf ci-env github --as-file)
+          env
           werf converge --repo $WERF_REPO
 
-      - name: Converge
-        uses: werf/actions/converge@v1.2
-        with:
-          env: production
-        env:
-          WERF_SET_ENV_URL: "envUrl=https://www.company.org"
-          WERF_REPO: "kiros/test-self-hosted"
-        run: |
-          env
-          source $(werf ci-env github --as-file)
-          env
-          werf converge --repo $WERF_REPO
+          #      - name: Converge
+          #        uses: werf/actions/converge@v1.2
+          #        with:
+          #          env: production
+          #        env:
+          #          WERF_SET_ENV_URL: "envUrl=https://www.company.org"
+          #          WERF_REPO: "kiros/test-self-hosted"
