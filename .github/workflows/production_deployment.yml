@@ -32,7 +32,7 @@ jobs:
           env
           source $(werf ci-env github --as-file)
           env
-          werf converge --repo $WERF_REPO
+          werf converge --repo $WERF_REPO --set "global.git_branch=branch,global.tier=test"
 
           #      - name: Converge
           #        uses: werf/actions/converge@v1.2
