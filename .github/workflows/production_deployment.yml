@@ -29,15 +29,5 @@ jobs:
           WERF_SET_ENV_URL: "envUrl=https://www.company.org"
           WERF_REPO: "kiros/test-self-hosted"
         run: |
-          env
           source $(werf ci-env github --as-file)
-          env
           werf converge --env main --repo $WERF_REPO --set "global.git_branch=main,global.tier=test"
-
-          #      - name: Converge
-          #        uses: werf/actions/converge@v1.2
-          #        with:
-          #          env: production
-          #        env:
-          #          WERF_SET_ENV_URL: "envUrl=https://www.company.org"
-          #          WERF_REPO: "kiros/test-self-hosted"
